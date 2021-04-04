@@ -727,13 +727,18 @@ MonoBehaviour:
   sounds:
   - name: Jump
     clip: {fileID: 8300000, guid: 049dfc8ce2d714b8a8b214adc21b8ca4, type: 3}
-    volume: 0.25
+    volume: 0.3
     pitch: 1
     source: {fileID: 0}
   - name: Land
     clip: {fileID: 8300000, guid: 6233c85216cd1854e8d87991c7568256, type: 3}
     volume: 0.7
     pitch: 0.4
+    source: {fileID: 0}
+  - name: Boost
+    clip: {fileID: 8300000, guid: dc9f34f8f8083485187956f1e0a5df2f, type: 3}
+    volume: 0.3
+    pitch: 1
     source: {fileID: 0}
 --- !u!4 &1897598471
 Transform:
@@ -816,6 +821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 15
   minSpeed: 6
+  maxBoostCD: 5
   acceleration: 15
   deceleration: 10
   controller: {fileID: 1915599565}

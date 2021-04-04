@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // Constants
     public float maxSpeed = 15f;
     public float minSpeed = 6f;
+    public float maxBoostCD = 2f;
 
     // Boost the player
     public float acceleration = 10f;
@@ -23,15 +25,19 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
-    // Private stats of the 
+    // Private stats of the player movement
     Vector3 velocity;
     bool isGrounded;
     bool jumped = true;
+    bool boosting;
+    float boostCD;
 
+    AudioManager audioManager;
 
     void Start()
     {
         playerSpeed = minSpeed;
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void Update()
@@ -54,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
             if (jumped)
             {
                 jumped = false;
-                FindObjectOfType<AudioManager>().Play("Land");
+                audioManager.Play("Land");
 
             }
         }
@@ -63,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            FindObjectOfType<AudioManager>().Play("Jump");
+            audioManager.Play("Jump");
             jumped = true;
         }
 
@@ -81,10 +87,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            boostCD = 0f;
+            boosting = true;
             if(playerSpeed < maxSpeed) playerSpeed += acceleration * Time.deltaTime;
+
+            if (!audioManager.IsPlaying("Boost") && boosting)
+            {
+                audioManager.Play("Boost");
+            }
         }
         else
         {
+            boosting = false;
             if(playerSpeed > minSpeed)
             {
                 playerSpeed -= deceleration * Time.deltaTime;
