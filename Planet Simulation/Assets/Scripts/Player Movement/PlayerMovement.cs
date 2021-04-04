@@ -30,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     bool jumped = true;
     bool boosting;
-    float boostCD;
 
     AudioManager audioManager;
 
@@ -87,7 +86,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            boostCD = 0f;
             boosting = true;
             if(playerSpeed < maxSpeed) playerSpeed += acceleration * Time.deltaTime;
 
