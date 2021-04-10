@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public static class Noise
 {
@@ -91,5 +90,4 @@ public static class Noise
 
         return noiseMap;
     }
-
 }
