@@ -2,9 +2,10 @@
 using System.Collections;
 using UnityEditor;
 
-[CustomEditor (typeof (MapGenerator))]
+[CustomEditor(typeof(MapGenerator))]
 public class MapGeneratorEditor : Editor
 {
+
     public override void OnInspectorGUI()
     {
         MapGenerator mapGen = (MapGenerator)target;
@@ -13,13 +14,13 @@ public class MapGeneratorEditor : Editor
         {
             if (mapGen.autoUpdate)
             {
-                mapGen.GenerateMap();
+                mapGen.DrawMapInEditor();
             }
         }
 
         if (GUILayout.Button("Generate"))
         {
-            mapGen.GenerateMap();
+            mapGen.DrawMapInEditor();
         }
     }
 }
