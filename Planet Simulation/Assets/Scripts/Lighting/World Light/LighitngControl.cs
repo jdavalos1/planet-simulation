@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class LighitngControl : MonoBehaviour
 {
     public float timePass;
@@ -11,28 +10,29 @@ public class LighitngControl : MonoBehaviour
 
     public float lengthOfDay;
 
-    public Direction sunrise;
+    //public Direction sunrise;
 
     private float currentRotation;
     
     void Start()
     {
-        currentRotation = 360 * currentTime / lengthOfDay;
+        currentRotation = 360 * currentTime / lengthOfDay + 180;
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentRotation += timePass * Time.deltaTime;
+        currentRotation += timePass / lengthOfDay * Time.deltaTime;
 
         if (currentRotation >= 360.0f)
         {
-            currentRotation -= 360.0f;
+            currentRotation = 0.0f;
         }
 
         transform.localRotation = Quaternion.Euler(currentRotation, 0f, 0f);
     }
 }
+
 
 [SerializeField]
 public enum Direction
@@ -40,5 +40,6 @@ public enum Direction
     North,
     South,
     East,
-    West
+    West,
+    None
 }
