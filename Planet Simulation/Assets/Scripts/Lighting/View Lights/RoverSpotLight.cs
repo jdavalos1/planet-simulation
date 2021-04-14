@@ -4,21 +4,29 @@ using UnityEngine;
 
 public class RoverSpotLight : MonoBehaviour
 {
-    public bool lightOn;
-    public Light spotlight;
+    public bool leftLightOn;
+    public bool rightLightOn;
+
+    public Light[] spotlight;
 
     void Start()
     {
-        spotlight.enabled = lightOn;
+        spotlight[0].enabled = leftLightOn;
+        spotlight[1].enabled = rightLightOn;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        // Turn on the lights based on the key press
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            lightOn = !lightOn;
-            spotlight.enabled = lightOn;
+            leftLightOn = !leftLightOn;
+            spotlight[0].enabled = leftLightOn;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            rightLightOn = !rightLightOn;
+            spotlight[1].enabled = rightLightOn;
         }
     }
 }
