@@ -13,10 +13,15 @@ public class LighitngControl : MonoBehaviour
     //public Direction sunrise;
 
     private float currentRotation;
+    private GameObject sunLight;
     
     void Start()
     {
-        currentRotation = 360 * currentTime / lengthOfDay + 180;
+        currentRotation = 360 * currentTime / lengthOfDay - 90;
+        transform.localRotation = Quaternion.Euler(currentRotation, 0f, 0f);
+
+        sunLight = GameObject.Find("Lighting/Day Light");
+        HandleSunView();
     }
 
     // Update is called once per frame
@@ -30,6 +35,27 @@ public class LighitngControl : MonoBehaviour
         }
 
         transform.localRotation = Quaternion.Euler(currentRotation, 0f, 0f);
+        HandleSunView();
+    }
+
+    private void HandleSunView()
+    {
+        if (sunLight.activeSelf)
+        {
+            if (transform.eulerAngles.x > 190f && transform.eulerAngles.x < 350f)
+            {
+                sunLight.SetActive(false);
+                Debug.Log("Must deactivate");
+            }
+        }
+        else
+        {
+            if(transform.eulerAngles.x < 200f || transform.eulerAngles.x > 345f)
+            {
+                sunLight.SetActive(true);
+                Debug.Log("Must activate");
+            }
+        }
     }
 }
 
