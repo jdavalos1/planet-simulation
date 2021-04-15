@@ -35,4 +35,5 @@ public class HeightMapSettings : UpdatableData
 		base.OnValidate ();
 	}
 #endif
+
 }
