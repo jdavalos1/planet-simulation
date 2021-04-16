@@ -42,18 +42,16 @@ public class LighitngControl : MonoBehaviour
     {
         if (sunLight.activeSelf)
         {
-            if (transform.eulerAngles.x > 190f && transform.eulerAngles.x < 350f)
+            if (transform.eulerAngles.x > 170f && transform.eulerAngles.x < 345f)
             {
                 sunLight.SetActive(false);
-                Debug.Log("Must deactivate");
             }
         }
         else
         {
-            if(transform.eulerAngles.x < 200f || transform.eulerAngles.x > 345f)
+            if(transform.eulerAngles.x <= 170f || transform.eulerAngles.x >= 345f)
             {
                 sunLight.SetActive(true);
-                Debug.Log("Must activate");
             }
         }
     }
