@@ -14,6 +14,7 @@ public class LighitngControl : MonoBehaviour
 
     private float currentRotation;
     private GameObject sunLight;
+    private GameObject nightLight;
     
     void Start()
     {
@@ -21,6 +22,7 @@ public class LighitngControl : MonoBehaviour
         transform.localRotation = Quaternion.Euler(currentRotation, 0f, 0f);
 
         sunLight = GameObject.Find("Lighting/Day Light");
+        nightLight = GameObject.Find("Lighting/Night Light");
         HandleSunView();
     }
 
@@ -45,6 +47,7 @@ public class LighitngControl : MonoBehaviour
             if (transform.eulerAngles.x > 170f && transform.eulerAngles.x < 345f)
             {
                 sunLight.SetActive(false);
+                nightLight.SetActive(true);
             }
         }
         else
@@ -52,6 +55,7 @@ public class LighitngControl : MonoBehaviour
             if(transform.eulerAngles.x <= 170f || transform.eulerAngles.x >= 345f)
             {
                 sunLight.SetActive(true);
+                nightLight.SetActive(false);
             }
         }
     }
