@@ -15,7 +15,13 @@ public class LighitngControl : MonoBehaviour
     private float currentRotation;
     private GameObject sunLight;
     private GameObject nightLight;
-    
+    private AudioManager manager;
+
+    void Awake()
+    {
+        manager = FindObjectOfType<AudioManager>();
+    }
+
     void Start()
     {
         currentRotation = 360 * currentTime / lengthOfDay - 90;
@@ -48,6 +54,8 @@ public class LighitngControl : MonoBehaviour
             {
                 sunLight.SetActive(false);
                 nightLight.SetActive(true);
+                manager.Stop("noise_day");
+                manager.Play("noise_night", true);
             }
         }
         else
@@ -56,6 +64,8 @@ public class LighitngControl : MonoBehaviour
             {
                 sunLight.SetActive(true);
                 nightLight.SetActive(false);
+                manager.Stop("noise_night");
+                manager.Play("noise_day", true);
             }
         }
     }
