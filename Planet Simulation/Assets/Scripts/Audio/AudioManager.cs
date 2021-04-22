@@ -9,14 +9,6 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if(instance == null)
-            instance = this;
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         foreach(var s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -25,27 +17,39 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Need to loop the initial source
-        Play("noise", true);
-    }
 
-
-    public void Play(string name, bool loop=false)
+    public void Play(string name, bool loop = false)
     {
         var s = Array.Find(sounds, sound => sound.name == name);
 
-        if (s == null) return;
+        if (s == null)
+        {
+            Debug.LogError("Audio Manager: Cannot find " + name + " as sound.");
+            return;
+        }
 
         s.source.loop = loop;
         s.source.Play();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Stop(string name)
     {
-        
+        var s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s == null)
+        {
+            Debug.LogError("Audio Manager: Cannot find " + name + " as sound.");
+            return;
+        }
+
+        s.source.Stop();
+    }
+
+    public void ChangeVolume(float volume)
+    {
+        foreach(var s in sounds)
+        {
+            s.volume = volume;
+        }
     }
 }
