@@ -7,12 +7,12 @@ public class CameraController : MonoBehaviour
     public Camera[] roverCameras;
     public Camera thirdPerson;
 
-    private AroundRover roverScript;
+    private ThirdPersonMouseFollow thirdPersonScript;
     private MouseFollow cameraMouseFollowScript;
-
+    
     private void Start()
     {
-        roverScript = FindObjectOfType<AroundRover>();
+        thirdPersonScript = FindObjectOfType<ThirdPersonMouseFollow>();
         cameraMouseFollowScript = FindObjectOfType<MouseFollow>();
     }
     // Update is called once per frame
@@ -28,14 +28,14 @@ public class CameraController : MonoBehaviour
             if (thirdPerson.enabled)
             {
                 thirdPerson.enabled = false;
-                roverScript.enabled = false;
+                thirdPersonScript.enabled = false;
                 cameraMouseFollowScript.enabled = true;
                 foreach (var camera in roverCameras) camera.enabled = true;
             }
             else
             {
                 thirdPerson.enabled = true;
-                roverScript.enabled = true;
+                thirdPersonScript.enabled = true;
                 cameraMouseFollowScript.enabled = false;
                 foreach (var camera in roverCameras) camera.enabled = false;
             }
