@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class LighitngControl : MonoBehaviour
 {
-    public float timePass;
 
-    public float currentTime;
-
-    public float lengthOfDay;
+    public float startTime;
+    public float hoursPerDay;
+    public float speedofDay;
 
     //public Direction sunrise;
-
+    private float degreesPerHour;
     private float currentRotation;
     private GameObject sunLight;
     private GameObject nightLight;
@@ -20,35 +19,51 @@ public class LighitngControl : MonoBehaviour
     void Awake()
     {
         manager = FindObjectOfType<AudioManager>();
-    }
+        degreesPerHour = 360 / hoursPerDay;
 
-    void Start()
-    {
-        currentRotation = 360 * currentTime / lengthOfDay - 90;
+        // 90 deg -> midday; 270 deg -> midnight then mod to get excess degs
+        currentRotation = (startTime * degreesPerHour + 270.0f) % 360.0f;
         transform.localRotation = Quaternion.Euler(currentRotation, 0f, 0f);
 
         sunLight = GameObject.Find("Lighting/Day Light");
         nightLight = GameObject.Find("Lighting/Night Light");
-        HandleSunView();
+        HandleDayMusic();
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentRotation += timePass / lengthOfDay * Time.deltaTime;
-
-        if (currentRotation >= 360.0f)
-        {
-            currentRotation = 0.0f;
-        }
-
+        currentRotation +=  speedofDay * degreesPerHour * Time.deltaTime;
+        currentRotation %= 360.0f;
         transform.localRotation = Quaternion.Euler(currentRotation, 0f, 0f);
-        HandleSunView();
+        HandleDayMusic();
     }
 
-    private void HandleSunView()
+    /**
+     * Return the current time in relation to the world time
+     */
+    public float CurrentHour()
     {
-        if (sunLight.activeSelf)
+        // 90 deg -> midday; 270 -> deg
+        var dayAngle = (currentRotation + 90) % 360;
+        return (dayAngle / 360) * hoursPerDay;
+    }
+
+    private void HandleDayMusic()
+    {
+        // 
+        if (transform.eulerAngles.x > 170f && transform.eulerAngles.x < 345f)
+        {
+            manager.Stop("noise_day");
+            manager.Play("noise_night", true);
+        }
+        else
+        {
+            manager.Stop("noise_night");
+            manager.Play("noise_day", true);
+        }
+
+/*        if (sunLight.activeSelf)
         {
             if (transform.eulerAngles.x > 170f && transform.eulerAngles.x < 345f)
             {
@@ -68,7 +83,7 @@ public class LighitngControl : MonoBehaviour
                 manager.Play("noise_day", true);
             }
         }
-    }
+*/    }
 }
 
 

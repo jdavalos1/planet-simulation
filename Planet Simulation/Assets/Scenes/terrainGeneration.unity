@@ -1208,7 +1208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &478589837
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2838,7 +2838,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 228}
+  m_AnchoredPosition: {x: 487, y: 352}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1061292813
@@ -2853,6 +2853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe19b339c6a1d0468091c8f5fb9c62f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoursInClock: 12
 --- !u!1 &1085670745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3394,7 +3395,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412434280}
-  m_Mesh: {fileID: 1573478343}
+  m_Mesh: {fileID: 1657475782}
 --- !u!4 &1412434283
 Transform:
   m_ObjectHideFlags: 0
@@ -3458,7 +3459,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -451, y: 235.3}
+  m_AnchoredPosition: {x: -424, y: -389}
   m_SizeDelta: {x: 323.89276, y: 24.804794}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1454767557
@@ -3560,7 +3561,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!43 &1573478343
+--- !u!43 &1657475782
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4411,6 +4412,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6210789604229015641, guid: f0c5ad3e295399841a0e9fa465f788bf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6210789604334604799, guid: f0c5ad3e295399841a0e9fa465f788bf,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6210789604526492757, guid: f0c5ad3e295399841a0e9fa465f788bf,
         type: 3}
       propertyPath: m_Name
@@ -4473,8 +4484,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6210789604526492759, guid: f0c5ad3e295399841a0e9fa465f788bf,
         type: 3}
+      propertyPath: speedofDay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6210789604526492759, guid: f0c5ad3e295399841a0e9fa465f788bf,
+        type: 3}
       propertyPath: currentTime
-      value: 0
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6210789604526492759, guid: f0c5ad3e295399841a0e9fa465f788bf,
+        type: 3}
+      propertyPath: hoursPerDay
+      value: 24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0c5ad3e295399841a0e9fa465f788bf, type: 3}

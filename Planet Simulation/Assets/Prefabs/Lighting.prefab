@@ -100,7 +100,7 @@ LensFlare:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6210789604229015646}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Flare: {fileID: 12100000, guid: 206af6a820427dd45a36b96d52739731, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_Brightness: 2
@@ -152,7 +152,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.22116414, g: 0.3579435, b: 0.6603774, a: 1}
-  m_Intensity: 0.1
+  m_Intensity: 0.25
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -246,6 +246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a20d938a5e2547e419b770fb1fc90000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timePass: 10
-  currentTime: 19
-  lengthOfDay: 24
+  startTime: 0
+  hoursPerDay: 24
+  speedofDay: 1
