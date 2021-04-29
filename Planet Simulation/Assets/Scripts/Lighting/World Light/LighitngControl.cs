@@ -5,8 +5,11 @@ using UnityEngine;
 public class LighitngControl : MonoBehaviour
 {
 
+    [Min(0.0f)]
     public float startTime;
+    [Min(0.0f)]
     public float hoursPerDay;
+    [Min(0.0f)]
     public float speedofDay;
 
     //public Direction sunrise;
