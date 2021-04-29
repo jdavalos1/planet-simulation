@@ -7,10 +7,11 @@ public class EnergyBar : MonoBehaviour
 {
 
     public Slider energySlider;
+    public float depletionRatio;
 
     void Update()
     {
-        energySlider.value += -.6f;
+        energySlider.value -= (depletionRatio * Time.deltaTime);
     }
 
 }
