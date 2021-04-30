@@ -4483,26 +4483,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2154907638794280180, guid: 95ec4a65dcedd8848aa16eb165bb1cf6,
-        type: 3}
-      propertyPath: sounds.Array.data[0].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2154907638794280180, guid: 95ec4a65dcedd8848aa16eb165bb1cf6,
-        type: 3}
-      propertyPath: sounds.Array.data[1].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2154907638794280180, guid: 95ec4a65dcedd8848aa16eb165bb1cf6,
-        type: 3}
-      propertyPath: sounds.Array.data[0].volume
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2154907638794280180, guid: 95ec4a65dcedd8848aa16eb165bb1cf6,
-        type: 3}
-      propertyPath: sounds.Array.data[1].volume
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 6262158271875329533, guid: 95ec4a65dcedd8848aa16eb165bb1cf6,
         type: 3}
       propertyPath: m_RootOrder
