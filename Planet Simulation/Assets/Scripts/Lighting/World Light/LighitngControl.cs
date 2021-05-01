@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LighitngControl : MonoBehaviour
 {
-
+    // Day Attributes
     [Min(0.0f)]
     public float startTime;
     [Min(0.0f)]
@@ -12,27 +12,33 @@ public class LighitngControl : MonoBehaviour
     [Min(0.0f)]
     public float speedofDay;
 
-    //public Direction sunrise;
+    // Variables to declare time starts
+    [Min(0)]
+    public int dayTimeStart;
+    [Min(0)]
+    public int nightTimeStart;
+
     private float degreesPerHour;
     private float currentRotation;
-    private GameObject sunLight;
-    private GameObject nightLight;
     private AudioManager manager;
+    private bool dayLocked;
+    private bool nightLocked;
 
     void Awake()
     {
-        manager = FindObjectOfType<AudioManager>();
         degreesPerHour = 360 / hoursPerDay;
-
         // 90 deg -> midday; 270 deg -> midnight then mod to get excess degs
         currentRotation = (startTime * degreesPerHour + 270.0f) % 360.0f;
         transform.localRotation = Quaternion.Euler(currentRotation, 0f, 0f);
-
-        sunLight = GameObject.Find("Lighting/Day Light");
-        nightLight = GameObject.Find("Lighting/Night Light");
+    }
+    void Start()
+    {
+        var currentHour = CurrentHour();
+        dayLocked = !(currentHour >= dayTimeStart && currentHour < nightTimeStart);
+        nightLocked = !dayLocked;
+        manager = FindObjectOfType<AudioManager>();
         HandleDayMusic();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -54,8 +60,30 @@ public class LighitngControl : MonoBehaviour
 
     private void HandleDayMusic()
     {
-        // 
-        if (transform.eulerAngles.x > 170f && transform.eulerAngles.x < 345f)
+        var currentHour = (int)CurrentHour();
+
+        if(currentHour >= dayTimeStart && currentHour <= nightTimeStart)
+        {
+            if (!dayLocked)
+            {
+                manager.Stop("noise_night");
+                manager.Play("noise_day", true);
+                nightLocked = !nightLocked;
+                dayLocked = !dayLocked;
+            }
+        }
+        else
+        {
+            if (!nightLocked)
+            {
+                manager.Stop("noise_day");
+                manager.Play("noise_night", true);
+                dayLocked = !dayLocked;
+                nightLocked = !nightLocked;
+            }
+        }
+
+/*        if (transform.eulerAngles.x > 170f && transform.eulerAngles.x < 345f)
         {
             manager.Stop("noise_day");
             manager.Play("noise_night", true);
@@ -65,7 +93,7 @@ public class LighitngControl : MonoBehaviour
             manager.Stop("noise_night");
             manager.Play("noise_day", true);
         }
-
+*/
 /*        if (sunLight.activeSelf)
         {
             if (transform.eulerAngles.x > 170f && transform.eulerAngles.x < 345f)
@@ -83,19 +111,9 @@ public class LighitngControl : MonoBehaviour
                 sunLight.SetActive(true);
                 nightLight.SetActive(false);
                 manager.Stop("noise_night");
+            if(manager.IsPlaying("noise_day"))
                 manager.Play("noise_day", true);
             }
         }
 */    }
-}
-
-
-[SerializeField]
-public enum Direction
-{
-    North,
-    South,
-    East,
-    West,
-    None
 }

@@ -297,7 +297,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4110865465947428408}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f11bcdbdc2445c44be24bad233abfdb, type: 3}
   m_Name: 
@@ -476,11 +476,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6262158271875329534}
-  playerSpeed: 3
+  playerSpeed: 2
   gravity: -10
-  jumpHeight: 5
+  jumpHeight: 3
   groundCheck: {fileID: 7734188607190905497}
-  groundDistance: -0.05
+  groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 1
