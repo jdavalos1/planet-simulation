@@ -249,3 +249,5 @@ MonoBehaviour:
   startTime: 0
   hoursPerDay: 24
   speedofDay: 0.05
+  dayTimeStart: 6
+  nightTimeStart: 20
