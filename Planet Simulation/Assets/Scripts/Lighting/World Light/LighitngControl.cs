@@ -11,6 +11,7 @@ public class LighitngControl : MonoBehaviour
     public float hoursPerDay;
     [Min(0.0f)]
     public float speedofDay;
+    public Light sunlight;
 
     // Variables to declare time starts
     [Min(0)]
@@ -38,6 +39,7 @@ public class LighitngControl : MonoBehaviour
         nightLocked = !dayLocked;
         manager = FindObjectOfType<AudioManager>();
         HandleDayMusic();
+        HandleSunIntensity();
     }
     // Update is called once per frame
     void Update()
@@ -46,8 +48,8 @@ public class LighitngControl : MonoBehaviour
         currentRotation %= 360.0f;
         transform.localRotation = Quaternion.Euler(currentRotation, 0f, 0f);
         HandleDayMusic();
+        HandleSunIntensity();
     }
-
     /**
      * Return the current time in relation to the world time
      */
@@ -58,10 +60,13 @@ public class LighitngControl : MonoBehaviour
         return (dayAngle / 360) * hoursPerDay;
     }
 
+    /**
+     * Handle the music during the night and day
+     */
     private void HandleDayMusic()
     {
         var currentHour = (int)CurrentHour();
-
+        // Check night of day time and lock the current song being played
         if(currentHour >= dayTimeStart && currentHour <= nightTimeStart)
         {
             if (!dayLocked)
@@ -82,38 +87,29 @@ public class LighitngControl : MonoBehaviour
                 nightLocked = !nightLocked;
             }
         }
+    }
+    private void HandleSunIntensity()
+    {
+        var currentHour = CurrentHour();
+        var midday = hoursPerDay / 2;
 
-/*        if (transform.eulerAngles.x > 170f && transform.eulerAngles.x < 345f)
+        // If daytime is increasing increase intensity
+        // else decrease it
+        if (currentHour >= dayTimeStart && currentHour < midday)
         {
-            manager.Stop("noise_day");
-            manager.Play("noise_night", true);
+            Debug.Log("Day Time");
+            // Obtain the hourly increase
+            var hourIntInc = 1 / (midday - dayTimeStart);
+
+            // Change the intensity based on curent hour (inc)
+            sunlight.intensity = (currentHour - dayTimeStart) * hourIntInc;
         }
-        else
+        else if(currentHour >= hoursPerDay / 2 && currentHour < nightTimeStart)
         {
-            manager.Stop("noise_night");
-            manager.Play("noise_day", true);
+            // Obtain hourly decrease
+            var hourIntDec = 1 / (nightTimeStart - midday);
+            // Change intensity based on current hour (dec)
+            sunlight.intensity = (nightTimeStart - currentHour) * hourIntDec;
         }
-*/
-/*        if (sunLight.activeSelf)
-        {
-            if (transform.eulerAngles.x > 170f && transform.eulerAngles.x < 345f)
-            {
-                sunLight.SetActive(false);
-                nightLight.SetActive(true);
-                manager.Stop("noise_day");
-                manager.Play("noise_night", true);
-            }
-        }
-        else
-        {
-            if(transform.eulerAngles.x <= 170f || transform.eulerAngles.x >= 345f)
-            {
-                sunLight.SetActive(true);
-                nightLight.SetActive(false);
-                manager.Stop("noise_night");
-            if(manager.IsPlaying("noise_day"))
-                manager.Play("noise_day", true);
-            }
-        }
-*/    }
+    }
 }
