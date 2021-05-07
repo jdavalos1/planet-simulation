@@ -39,7 +39,6 @@ public class LighitngControl : MonoBehaviour
         nightLocked = !dayLocked;
         manager = FindObjectOfType<AudioManager>();
         HandleDayMusic();
-        HandleSunIntensity();
     }
     // Update is called once per frame
     void Update()
