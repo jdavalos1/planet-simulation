@@ -94,16 +94,15 @@ public class LighitngControl : MonoBehaviour
 
         // If daytime is increasing increase intensity
         // else decrease it
-        if (currentHour >= dayTimeStart && currentHour < midday)
+        if (currentHour >= dayTimeStart && currentHour <= midday)
         {
-            Debug.Log("Day Time");
             // Obtain the hourly increase
             var hourIntInc = 1 / (midday - dayTimeStart);
 
             // Change the intensity based on curent hour (inc)
             sunlight.intensity = (currentHour - dayTimeStart) * hourIntInc;
         }
-        else if(currentHour >= hoursPerDay / 2 && currentHour < nightTimeStart)
+        else if(currentHour > midday && currentHour < nightTimeStart)
         {
             // Obtain hourly decrease
             var hourIntDec = 1 / (nightTimeStart - midday);
