@@ -39,6 +39,7 @@ public class LighitngControl : MonoBehaviour
         nightLocked = !dayLocked;
         manager = FindObjectOfType<AudioManager>();
         HandleDayMusic();
+        // If it's night time we need to make sure the intensity starts at 0 and later updated
     }
     // Update is called once per frame
     void Update()
@@ -102,12 +103,16 @@ public class LighitngControl : MonoBehaviour
             // Change the intensity based on curent hour (inc)
             sunlight.intensity = (currentHour - dayTimeStart) * hourIntInc;
         }
-        else if(currentHour > midday && currentHour < nightTimeStart)
+        else if (currentHour > midday && currentHour < nightTimeStart)
         {
             // Obtain hourly decrease
             var hourIntDec = 1 / (nightTimeStart - midday);
             // Change intensity based on current hour (dec)
             sunlight.intensity = (nightTimeStart - currentHour) * hourIntDec;
+        }
+        else
+        {
+            sunlight.intensity = 0;
         }
     }
 }
