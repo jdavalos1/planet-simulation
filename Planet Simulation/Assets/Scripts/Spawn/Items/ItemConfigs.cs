@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemConfigs : MonoBehaviour
 {
-    private readonly float maxEuclidDist = 50f;
+    private readonly float maxEuclidDist = 100f;
     private readonly float bobSpeed = 1f;
     private readonly float bobHeight = 0.25f;
     private float originalY;

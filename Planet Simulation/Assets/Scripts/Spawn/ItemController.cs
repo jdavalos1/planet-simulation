@@ -10,6 +10,8 @@ public class ItemController : MonoBehaviour
     [Min(0)]
     public int maxItemSpawns;
     public float timeForNextSpawn;
+    public bool randomSpawnTime;
+    public Transform player;
 
     private List<GameObject> itemsNearPlayer;
     private float time;
@@ -37,7 +39,15 @@ public class ItemController : MonoBehaviour
     void CreateSpawn()
     {
         time = 0;
+        timeForNextSpawn = randomSpawnTime ? Random.Range(0, timeForNextSpawn) : timeForNextSpawn;
         if (itemsNearPlayer.Count >= maxItemSpawns) return;
+
+        var randPosition = new Vector3(Random.Range(-maxPositions.x, maxPositions.x),
+                                       Random.Range(0, maxPositions.y),
+                                       Random.Range(-maxPositions.z, maxPositions.z));
+        var newItem = Instantiate(itemToSpawn, randPosition + player.position, Quaternion.identity);
+
+        itemsNearPlayer.Add(newItem);
     }
     
     void RemoveEmpty()
