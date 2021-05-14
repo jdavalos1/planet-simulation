@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LighitngControl : MonoBehaviour
 {
+    public Material skybox;
+    
     // Day Attributes
     [Min(0.0f)]
     public float startTime;
@@ -40,6 +42,8 @@ public class LighitngControl : MonoBehaviour
         manager = FindObjectOfType<AudioManager>();
         HandleDayMusic();
         // If it's night time we need to make sure the intensity starts at 0 and later updated
+
+        UpdateSkybox();
     }
     // Update is called once per frame
     void Update()
@@ -48,7 +52,9 @@ public class LighitngControl : MonoBehaviour
         currentRotation %= 360.0f;
         transform.localRotation = Quaternion.Euler(currentRotation, 0f, 0f);
         HandleDayMusic();
-        HandleSunIntensity();
+        //HandleSunIntensity();
+
+        UpdateSkybox();
     }
     /**
      * Return the current time in relation to the world time
@@ -114,5 +120,25 @@ public class LighitngControl : MonoBehaviour
         {
             sunlight.intensity = 0;
         }
+    }
+
+    private void UpdateSkybox()
+    {
+        var currentHour = CurrentHour();
+        float lightDimTime = (hoursPerDay / 4) * 2.5f;
+        float skyboxBlendFactor = 0;
+
+        if (currentHour >= dayTimeStart && currentHour <= lightDimTime)
+        {
+            skyboxBlendFactor = 1 / (lightDimTime - dayTimeStart);
+            skyboxBlendFactor = skyboxBlendFactor * (currentHour - dayTimeStart);
+        }
+        if (currentHour <= nightTimeStart && currentHour >= lightDimTime)
+        {
+            skyboxBlendFactor = 1 / (nightTimeStart - lightDimTime);
+            skyboxBlendFactor = skyboxBlendFactor * (nightTimeStart - currentHour);
+        }
+
+        skybox.SetFloat("_Blend", skyboxBlendFactor);
     }
 }

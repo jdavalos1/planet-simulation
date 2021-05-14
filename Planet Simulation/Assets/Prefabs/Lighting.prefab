@@ -246,9 +246,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a20d938a5e2547e419b770fb1fc90000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 0
+  skybox: {fileID: 2100000, guid: 13d9403ad6fc0ab4c9db465a2420b362, type: 2}
+  startTime: 12
   hoursPerDay: 24
-  speedofDay: 0.05
-  sunlight: {fileID: 6210789604229015647}
+  speedofDay: 0.5
   dayTimeStart: 6
   nightTimeStart: 19
