@@ -20,7 +20,7 @@ public class EnergyBar : MonoBehaviour
         energyBar.maxValue = maxEnergy;
         energyBar.value = energy;
     }
-    private void Update()
+    private void LateUpdate()
     {
         energy -= depletionRatio;
         energyBar.value = energy;
@@ -50,11 +50,9 @@ public class EnergyBar : MonoBehaviour
             energyBar.value = energy;
         }
     }
-    void DecreaseOnJump()
+    public void DecreaseOnJump()
     {
-        if (Input.GetKeyDown("Jump"))
-        {
-
-        }
+        energy -= jumpEnergyDecay;
+        energyBar.value = energy;
     }
 }

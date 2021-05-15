@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public Skybox skybox;
     void Start()
     {
-        energyBar = GameObject.Find("EnergyBar").GetComponent<EnergyBar>();
+        energyBar = gameObject.GetComponent<EnergyBar>();
     }
 
     void Update()
@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            energyBar.DecreaseOnJump();
         }
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
