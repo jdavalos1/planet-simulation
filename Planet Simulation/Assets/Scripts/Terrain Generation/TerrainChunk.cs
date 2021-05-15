@@ -2,7 +2,7 @@
 
 public class TerrainChunk
 {
-
+    const int groundLayer = 8;
     const float colliderGenerationDistanceThreshold = 5;
     public event System.Action<TerrainChunk, bool> onVisibilityChanged;
     public Vector2 coord;
@@ -44,7 +44,7 @@ public class TerrainChunk
 
 
         meshObject = new GameObject("Terrain Chunk");
-        meshObject.tag = "Ground";
+        meshObject.layer= groundLayer;
         meshRenderer = meshObject.AddComponent<MeshRenderer>();
         meshFilter = meshObject.AddComponent<MeshFilter>();
         meshCollider = meshObject.AddComponent<MeshCollider>();
