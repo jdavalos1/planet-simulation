@@ -1,24 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
-    public float playerSpeed = 12f;
-    public float gravity = -9.81f;
-    public float jumpHeight = 3f;
+    public float playerSpeed;
+    public float gravity;
+    public float jumpHeight;
 
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    public float groundDistance;
     public LayerMask groundMask;
+    public EnergyBar energyBar;
 
-    Vector3 velocity;
-    bool isGrounded;
-
+    private Vector3 velocity;
+    private bool isGrounded;
+    public Skybox skybox;
     void Start()
     {
+        energyBar = GameObject.Find("EnergyBar").GetComponent<EnergyBar>();
     }
 
     void Update()
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         }
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+        
 
         Vector3 move = transform.right * x + transform.forward * z;
 

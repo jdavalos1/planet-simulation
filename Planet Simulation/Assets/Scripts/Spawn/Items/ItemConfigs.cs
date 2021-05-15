@@ -37,4 +37,9 @@ public class ItemConfigs : MonoBehaviour
     {
         return Vector3.Distance(player.position, transform.position) > maxEuclidDist;
     }
+
+    void OnCollisionExit(Collision collision)
+    {
+        Debug.Log("Calling");
+    }
 }
