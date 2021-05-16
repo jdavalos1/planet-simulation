@@ -411,6 +411,11 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1.5
     source: {fileID: 0}
+  - name: Boost
+    clip: {fileID: 8300000, guid: 6e034c0fede1d8846854cb0bf697df86, type: 3}
+    volume: 0.6
+    pitch: 0.8
+    source: {fileID: 0}
   audioLock: 0
 --- !u!1 &6262158271751887790
 GameObject:
@@ -513,15 +518,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6262158271875329534}
-  playerSpeed: 3
+  playerSpeed: 2
   gravity: -10
   jumpHeight: 4
-  maxBoostVelocity: 5
+  maxBoostVelocity: 4
+  maxBoostTime: 2
   groundCheck: {fileID: 7734188607190905497}
-  groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  groundDistance: 0.4
 --- !u!114 &6262158271875329532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,6 +563,7 @@ MonoBehaviour:
   cellIncrease: 20
   movementEnergyDecay: 0.005
   jumpEnergyDecay: 1
+  boostEnergyDecay: 1
   gameOverUI: {fileID: 0}
   ingameUIs:
   - {fileID: 0}
@@ -715,7 +722,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 3
-  m_Range: 20
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 1
   m_CookieSize: 10
@@ -807,7 +814,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 4
-  m_Range: 20
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 1
   m_CookieSize: 10

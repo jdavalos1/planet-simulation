@@ -11,6 +11,7 @@ public class EnergyBar : MonoBehaviour
     public float cellIncrease;
     public float movementEnergyDecay;
     public float jumpEnergyDecay;
+    public float boostEnergyDecay;
     public GameObject gameOverUI;
     public GameObject[] ingameUIs;
 
@@ -52,13 +53,19 @@ public class EnergyBar : MonoBehaviour
 
         if(x != 0 || y != 0)
         {
-            energy -= movementEnergyDecay;
+            energy -= movementEnergyDecay * Time.deltaTime;
             energyBar.value = energy;
         }
     }
     public void DecreaseOnJump()
     {
         energy -= jumpEnergyDecay;
+        energyBar.value = energy;
+    }
+    
+    public void DecreaseOnBoost()
+    {
+        energy -= boostEnergyDecay * Time.deltaTime;
         energyBar.value = energy;
     }
 

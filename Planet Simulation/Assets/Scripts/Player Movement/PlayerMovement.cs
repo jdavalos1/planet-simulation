@@ -14,19 +14,21 @@ public class PlayerMovement : MonoBehaviour
     public float maxBoostTime;
 
     public Transform groundCheck;
-    public float groundDistance;
     public LayerMask groundMask;
+    public float groundDistance;
 
-    private float boostVelocity = 1.0f;
     private EnergyBar energyBar;
     private Vector3 velocity;
-    private bool isGrounded;
     private AudioManager sfxManager;
+    private float boostVelocity = 1.0f;
+    private bool isGrounded;
+    private bool boostLock;
 
     void Start()
     {
         energyBar = gameObject.GetComponent<EnergyBar>();
         sfxManager = GameObject.Find("SFX Manager").GetComponent<AudioManager>();
+        boostLock = false;
     }
 
     void Update()
@@ -40,10 +42,17 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButton("Boost"))
         {
             boostVelocity = maxBoostVelocity;
+            energyBar.DecreaseOnBoost();
+            if (!boostLock)
+            {
+                sfxManager.Play("Boost");
+                boostLock = true;
+            }
         }
         else
         {
             boostVelocity = 1.0f;
+            boostLock = false;
         }
     }
 
