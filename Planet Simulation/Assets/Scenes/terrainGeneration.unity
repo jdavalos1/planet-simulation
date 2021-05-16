@@ -537,6 +537,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1418175958352615597}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1148900454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7727780444454512907, guid: 5c161015c7fc70446bd4f2a6ef3481c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1418175958352615597}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1368542055 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1418175959165113290, guid: 5c161015c7fc70446bd4f2a6ef3481c7,
@@ -919,6 +925,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6092686543019071982, guid: 5c161015c7fc70446bd4f2a6ef3481c7,
+        type: 3}
+      propertyPath: m_Name
+      value: Bottom Camera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c161015c7fc70446bd4f2a6ef3481c7, type: 3}
 --- !u!1001 &6092177493450466852
@@ -1088,6 +1099,11 @@ PrefabInstance:
       objectReference: {fileID: 810728532}
     - target: {fileID: 5164680809857953774, guid: 95ec4a65dcedd8848aa16eb165bb1cf6,
         type: 3}
+      propertyPath: ingameUis.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164680809857953774, guid: 95ec4a65dcedd8848aa16eb165bb1cf6,
+        type: 3}
       propertyPath: ingameUis.Array.data[0]
       value: 
       objectReference: {fileID: 1368542055}
@@ -1096,6 +1112,11 @@ PrefabInstance:
       propertyPath: ingameUis.Array.data[1]
       value: 
       objectReference: {fileID: 1134159738}
+    - target: {fileID: 5164680809857953774, guid: 95ec4a65dcedd8848aa16eb165bb1cf6,
+        type: 3}
+      propertyPath: ingameUis.Array.data[2]
+      value: 
+      objectReference: {fileID: 1148900454}
     - target: {fileID: 6262158271875329533, guid: 95ec4a65dcedd8848aa16eb165bb1cf6,
         type: 3}
       propertyPath: m_RootOrder
