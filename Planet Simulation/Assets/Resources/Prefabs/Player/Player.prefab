@@ -522,12 +522,12 @@ MonoBehaviour:
   gravity: -10
   jumpHeight: 4
   maxBoostVelocity: 4
-  maxBoostTime: 2
+  boostRatio: 0.5
   groundCheck: {fileID: 7734188607190905497}
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  groundDistance: 0.4
+  groundDistance: 0.2
 --- !u!114 &6262158271875329532
 MonoBehaviour:
   m_ObjectHideFlags: 0
