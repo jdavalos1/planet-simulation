@@ -522,12 +522,12 @@ MonoBehaviour:
   gravity: -10
   jumpHeight: 4
   maxBoostVelocity: 4
-  boostRatio: 0.5
+  boostRatio: 1
   groundCheck: {fileID: 7734188607190905497}
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  groundDistance: 0.2
+  groundDistance: 0.4
 --- !u!114 &6262158271875329532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +565,7 @@ MonoBehaviour:
   jumpEnergyDecay: 1
   boostEnergyDecay: 1
   gameOverUI: {fileID: 0}
-  ingameUIs:
+  ingameUis:
   - {fileID: 0}
   - {fileID: 0}
 --- !u!1 &6262158272793655874

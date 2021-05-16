@@ -13,7 +13,7 @@ public class EnergyBar : MonoBehaviour
     public float jumpEnergyDecay;
     public float boostEnergyDecay;
     public GameObject gameOverUI;
-    public GameObject[] ingameUIs;
+    public GameObject[] ingameUis;
 
     private float energy;
 
@@ -73,7 +73,7 @@ public class EnergyBar : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Confined;
         gameOverUI.SetActive(true);
-        Array.ForEach(ingameUIs, go => go.SetActive(false));
+        Array.ForEach(ingameUis, go => go.SetActive(false));
         Time.timeScale = 0f;
     }
 }
