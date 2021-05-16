@@ -18,10 +18,12 @@ public class PlayerMovement : MonoBehaviour
     private EnergyBar energyBar;
     private Vector3 velocity;
     private bool isGrounded;
+    private AudioManager sfxManager;
 
     void Start()
     {
         energyBar = gameObject.GetComponent<EnergyBar>();
+        sfxManager = GameObject.Find("SFX Manager").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -41,7 +43,8 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(move * playerSpeed * Time.deltaTime);
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            sfxManager.Play("Jump");
+            velocity.y = Mathf.Sqrt(jumpHeight * -1f * gravity);
             energyBar.DecreaseOnJump();
         }
         velocity.y += gravity * Time.deltaTime;
