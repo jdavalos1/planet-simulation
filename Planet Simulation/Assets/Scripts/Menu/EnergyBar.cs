@@ -11,8 +11,9 @@ public class EnergyBar : MonoBehaviour
     public float cellIncrease;
     public float movementEnergyDecay;
     public float jumpEnergyDecay;
+    public float boostEnergyDecay;
     public GameObject gameOverUI;
-    public GameObject[] ingameUIs;
+    public GameObject[] ingameUis;
 
     private float energy;
 
@@ -52,7 +53,7 @@ public class EnergyBar : MonoBehaviour
 
         if(x != 0 || y != 0)
         {
-            energy -= movementEnergyDecay;
+            energy -= movementEnergyDecay * Time.deltaTime;
             energyBar.value = energy;
         }
     }
@@ -61,12 +62,18 @@ public class EnergyBar : MonoBehaviour
         energy -= jumpEnergyDecay;
         energyBar.value = energy;
     }
+    
+    public void DecreaseOnBoost()
+    {
+        energy -= boostEnergyDecay * Time.deltaTime;
+        energyBar.value = energy;
+    }
 
     void EndGame()
     {
         Cursor.lockState = CursorLockMode.Confined;
         gameOverUI.SetActive(true);
-        Array.ForEach(ingameUIs, go => go.SetActive(false));
+        Array.ForEach(ingameUis, go => go.SetActive(false));
         Time.timeScale = 0f;
     }
 }

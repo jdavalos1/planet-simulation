@@ -36,7 +36,7 @@ public class LighitngControl : MonoBehaviour
         var currentHour = CurrentHour();
         dayLocked = !(currentHour >= dayTimeStart && currentHour < nightTimeStart);
         nightLocked = !dayLocked;
-        manager = FindObjectOfType<AudioManager>();
+        manager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
         HandleDayMusic();
     }
     // Update is called once per frame
@@ -66,8 +66,8 @@ public class LighitngControl : MonoBehaviour
         {
             if (!dayLocked)
             {
-                manager.Stop("noise_night");
-                manager.Play("noise_day", true);
+                manager.Stop("night_music");
+                manager.Play("day_music", true);
                 nightLocked = !nightLocked;
                 dayLocked = !dayLocked;
             }
@@ -76,44 +76,11 @@ public class LighitngControl : MonoBehaviour
         {
             if (!nightLocked)
             {
-                manager.Stop("noise_day");
-                manager.Play("noise_night", true);
+                manager.Stop("day_music");
+                manager.Play("night_music", true);
                 dayLocked = !dayLocked;
                 nightLocked = !nightLocked;
             }
         }
-
-/*        if (transform.eulerAngles.x > 170f && transform.eulerAngles.x < 345f)
-        {
-            manager.Stop("noise_day");
-            manager.Play("noise_night", true);
-        }
-        else
-        {
-            manager.Stop("noise_night");
-            manager.Play("noise_day", true);
-        }
-*/
-/*        if (sunLight.activeSelf)
-        {
-            if (transform.eulerAngles.x > 170f && transform.eulerAngles.x < 345f)
-            {
-                sunLight.SetActive(false);
-                nightLight.SetActive(true);
-                manager.Stop("noise_day");
-                manager.Play("noise_night", true);
-            }
-        }
-        else
-        {
-            if(transform.eulerAngles.x <= 170f || transform.eulerAngles.x >= 345f)
-            {
-                sunLight.SetActive(true);
-                nightLight.SetActive(false);
-                manager.Stop("noise_night");
-            if(manager.IsPlaying("noise_day"))
-                manager.Play("noise_day", true);
-            }
-        }
-*/    }
+    }
 }
