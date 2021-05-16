@@ -1109,7 +1109,7 @@ PrefabInstance:
     - target: {fileID: 5164680809857953774, guid: 95ec4a65dcedd8848aa16eb165bb1cf6,
         type: 3}
       propertyPath: maxEnergy
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5164680809857953774, guid: 95ec4a65dcedd8848aa16eb165bb1cf6,
         type: 3}

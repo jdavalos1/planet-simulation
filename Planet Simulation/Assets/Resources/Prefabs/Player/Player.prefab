@@ -470,8 +470,6 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  energyBar: {fileID: 0}
-  skybox: {fileID: 0}
 --- !u!114 &6262158271875329532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,7 +504,11 @@ MonoBehaviour:
   depletionRatio: 0.001
   cellIncrease: 20
   movementEnergyDecay: 0.005
-  jumpEnergyDecay: 0.1
+  jumpEnergyDecay: 1
+  gameOverUI: {fileID: 0}
+  ingameUIs:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &6262158272793655874
 GameObject:
   m_ObjectHideFlags: 0
