@@ -185,6 +185,7 @@ MonoBehaviour:
     volume: 100
     pitch: 1
     source: {fileID: 0}
+  audioLock: 0
 --- !u!64 &1080834561524369999
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -502,10 +503,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyBar: {fileID: 0}
   maxEnergy: 100
-  depletionRatio: 0.01
+  depletionRatio: 0.001
   cellIncrease: 20
-  movementEnergyDecay: 0.01
-  jumpEnergyDecay: 0
+  movementEnergyDecay: 0.005
+  jumpEnergyDecay: 0.1
 --- !u!1 &6262158272793655874
 GameObject:
   m_ObjectHideFlags: 0

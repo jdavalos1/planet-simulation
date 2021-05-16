@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnergyBar : MonoBehaviour
 {
@@ -25,8 +24,11 @@ public class EnergyBar : MonoBehaviour
         energy -= depletionRatio;
         energyBar.value = energy;
 
-        if (energyBar.value <= 0) Debug.Log("Out of energy");
         DecreaseOnMovement();
+
+        if (energyBar.value <= 0)
+        {
+        }
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)

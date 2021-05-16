@@ -43,8 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6490a0d800f98643a956c657032aec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPositions: {x: 0, y: 0, z: 0}
+  maxPositions: {x: 69, y: 7, z: 77}
   itemToSpawn: {fileID: 5991391873743486956, guid: 9b8eb3977e316df4a844588b024c4e67,
     type: 3}
   maxItemSpawns: 4
-  timeForNextSpawn: 1000
+  timeForNextSpawn: 40
+  randomSpawnTime: 0
+  player: {fileID: 0}
+  spawnBelowMaxY: 1

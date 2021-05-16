@@ -7,8 +7,11 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
     public static AudioManager instance;
 
+    public bool audioLock;
+
     void Awake()
     {
+        audioLock = false;
         foreach(var s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -20,6 +23,9 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string name, bool loop = false)
     {
+        // No other audio can be played
+        if (audioLock) return;
+
         var s = Array.Find(sounds, sound => sound.name == name);
 
         if (s == null)
@@ -43,6 +49,11 @@ public class AudioManager : MonoBehaviour
         }
 
         s.source.Stop();
+    }
+
+    public void StopAll()
+    {
+        Array.ForEach(sounds, s => s.source.Stop());
     }
 
     public void ChangeVolume(float volume)

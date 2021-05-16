@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33508866923476812}
   - component: {fileID: 23900633661353282}
   - component: {fileID: 64383802360651250}
+  - component: {fileID: -3774868240176193864}
   m_Layer: 0
   m_Name: AlienDestroyerGreen
   m_TagString: Untagged
@@ -94,3 +95,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 5c929a1e7e6053f499c799f0b76fc965, type: 3}
+--- !u!114 &-3774868240176193864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963857078541744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03a48a8b1d340040a525e9280cf6ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bobSpeed: 0.1
+  bobHeight: 0.1
+  maxPlayerDistance: 400
+  ufoMusic: encounter
