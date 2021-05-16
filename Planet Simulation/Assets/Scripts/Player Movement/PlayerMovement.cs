@@ -10,11 +10,14 @@ public class PlayerMovement : MonoBehaviour
     public float playerSpeed;
     public float gravity;
     public float jumpHeight;
+    public float maxBoostVelocity;
+    public float maxBoostTime;
 
     public Transform groundCheck;
     public float groundDistance;
     public LayerMask groundMask;
 
+    private float boostVelocity = 1.0f;
     private EnergyBar energyBar;
     private Vector3 velocity;
     private bool isGrounded;
@@ -28,8 +31,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        CheckBoost();
         LateralMovement();
     }
+
+    void CheckBoost()
+    {
+        if (Input.GetButton("Boost"))
+        {
+            boostVelocity = maxBoostVelocity;
+        }
+        else
+        {
+            boostVelocity = 1.0f;
+        }
+    }
+
     void LateralMovement()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -44,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * playerSpeed * Time.deltaTime);
+        controller.Move(move * playerSpeed * boostVelocity * Time.deltaTime);
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             sfxManager.Play("Jump");
@@ -54,4 +71,5 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity / 2f * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+    
 }

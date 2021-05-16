@@ -516,6 +516,7 @@ MonoBehaviour:
   playerSpeed: 3
   gravity: -10
   jumpHeight: 4
+  maxBoostVelocity: 5
   groundCheck: {fileID: 7734188607190905497}
   groundDistance: 0.4
   groundMask:
