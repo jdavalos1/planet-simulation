@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class EnergyBar : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EnergyBar : MonoBehaviour
     public float cellIncrease;
     public float movementEnergyDecay;
     public float jumpEnergyDecay;
+    public GameObject gameOverUI;
+    public GameObject[] ingameUIs;
 
     private float energy;
 
@@ -28,6 +31,7 @@ public class EnergyBar : MonoBehaviour
 
         if (energyBar.value <= 0)
         {
+            EndGame();
         }
     }
 
@@ -56,5 +60,13 @@ public class EnergyBar : MonoBehaviour
     {
         energy -= jumpEnergyDecay;
         energyBar.value = energy;
+    }
+
+    void EndGame()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        gameOverUI.SetActive(true);
+        Array.ForEach(ingameUIs, go => go.SetActive(false));
+        Time.timeScale = 0f;
     }
 }

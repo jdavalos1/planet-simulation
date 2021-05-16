@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +8,7 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
-    public GameObject inGameUI;
+    public GameObject[] inGameUIs;
 
     // Update is called once per frame
     void Update()
@@ -31,7 +30,7 @@ public class PauseMenu : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
-        inGameUI.SetActive(true);
+        Array.ForEach(inGameUIs, go => go.SetActive(true));
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -40,7 +39,7 @@ public class PauseMenu : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Confined;
         pauseMenuUI.SetActive(true);
-        inGameUI.SetActive(false);
+        Array.ForEach(inGameUIs, go => go.SetActive(false));
         Time.timeScale = 0f;
         GameIsPaused = true;
     }

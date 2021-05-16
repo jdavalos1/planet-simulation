@@ -14,11 +14,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance;
     public LayerMask groundMask;
-    public EnergyBar energyBar;
 
+    private EnergyBar energyBar;
     private Vector3 velocity;
     private bool isGrounded;
-    public Skybox skybox;
+
     void Start()
     {
         energyBar = gameObject.GetComponent<EnergyBar>();
