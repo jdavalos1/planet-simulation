@@ -28,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        LateralMovement();
+    }
+    void LateralMovement()
+    {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if(isGrounded && velocity.y < 0)
@@ -44,10 +48,10 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             sfxManager.Play("Jump");
-            velocity.y = Mathf.Sqrt(jumpHeight * -1f * gravity);
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             energyBar.DecreaseOnJump();
         }
-        velocity.y += gravity * Time.deltaTime;
+        velocity.y += gravity / 2f * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
 }
