@@ -9,11 +9,13 @@ public class CameraController : MonoBehaviour
 
     private ThirdPersonMouseFollow thirdPersonScript;
     private MouseFollow cameraMouseFollowScript;
+    private PlayerMovement playerMovementScript;
     
     private void Start()
     {
         thirdPersonScript = FindObjectOfType<ThirdPersonMouseFollow>();
         cameraMouseFollowScript = FindObjectOfType<MouseFollow>();
+        playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
     // Update is called once per frame
     void Update()
@@ -29,6 +31,7 @@ public class CameraController : MonoBehaviour
             {
                 thirdPerson.enabled = false;
                 thirdPersonScript.enabled = false;
+                playerMovementScript.enabled = true;
                 cameraMouseFollowScript.enabled = true;
                 foreach (var camera in roverCameras) camera.enabled = true;
             }
@@ -36,6 +39,7 @@ public class CameraController : MonoBehaviour
             {
                 thirdPerson.enabled = true;
                 thirdPersonScript.enabled = true;
+                playerMovementScript.enabled = false;
                 cameraMouseFollowScript.enabled = false;
                 foreach (var camera in roverCameras) camera.enabled = false;
             }
