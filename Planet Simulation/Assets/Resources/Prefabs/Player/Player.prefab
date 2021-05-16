@@ -409,7 +409,7 @@ MonoBehaviour:
   - name: Jump
     clip: {fileID: 8300000, guid: ba59d307310f7b84d9b877773e4341a8, type: 3}
     volume: 0.5
-    pitch: 1
+    pitch: 1.5
     source: {fileID: 0}
   audioLock: 0
 --- !u!1 &6262158271751887790
