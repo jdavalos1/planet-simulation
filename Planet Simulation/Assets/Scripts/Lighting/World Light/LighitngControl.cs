@@ -39,7 +39,7 @@ public class LighitngControl : MonoBehaviour
         var currentHour = CurrentHour();
         dayLocked = !(currentHour >= dayTimeStart && currentHour < nightTimeStart);
         nightLocked = !dayLocked;
-        manager = FindObjectOfType<AudioManager>();
+        manager = GameObject.Find("Audio Manager").GetComponent<AudioManager>(); // FindObjectOfType<AudioManager>();
         HandleDayMusic();
         // If it's night time we need to make sure the intensity starts at 0 and later updated
 
