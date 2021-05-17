@@ -65,7 +65,14 @@ public class LighitngControl : MonoBehaviour
         var dayAngle = (currentRotation + 90) % 360;
         return (dayAngle / 360) * hoursPerDay;
     }
+    public void ChangeHour(bool dayTime)
+    {
+        var newHour = dayTime ? 12 : 0;
+        var newRotation = (newHour * degreesPerHour + 270.0f) % 360.0f;
 
+        currentRotation = newRotation;
+        transform.localRotation = Quaternion.Euler(currentRotation, 0, 0);
+    }
     /**
      * Handle the music during the night and day
      */
@@ -92,33 +99,6 @@ public class LighitngControl : MonoBehaviour
                 dayLocked = !dayLocked;
                 nightLocked = !nightLocked;
             }
-        }
-    }
-    private void HandleSunIntensity()
-    {
-        var currentHour = CurrentHour();
-        var midday = hoursPerDay / 2;
-
-        // If daytime is increasing increase intensity
-        // else decrease it
-        if (currentHour >= dayTimeStart && currentHour <= midday)
-        {
-            // Obtain the hourly increase
-            var hourIntInc = 1 / (midday - dayTimeStart);
-
-            // Change the intensity based on curent hour (inc)
-            sunlight.intensity = (currentHour - dayTimeStart) * hourIntInc;
-        }
-        else if (currentHour > midday && currentHour < nightTimeStart)
-        {
-            // Obtain hourly decrease
-            var hourIntDec = 1 / (nightTimeStart - midday);
-            // Change intensity based on current hour (dec)
-            sunlight.intensity = (nightTimeStart - currentHour) * hourIntDec;
-        }
-        else
-        {
-            sunlight.intensity = 0;
         }
     }
 

@@ -907,13 +907,14 @@ GameObject:
   - component: {fileID: 1418175957893771671}
   - component: {fileID: 1418175957893771668}
   - component: {fileID: 1418175957893771669}
+  - component: {fileID: 6220711632489769059}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1418175957893771671
 RectTransform:
   m_ObjectHideFlags: 0
@@ -974,6 +975,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6220711632489769059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418175957893771674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecb76ba1673194458ebcf33a938eada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  managers:
+  - {fileID: 0}
+  - {fileID: 0}
+  volumeSlider: {fileID: 1418175957985310199}
 --- !u!1 &1418175957917795286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,7 +1276,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2755,7 +2772,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3589,7 +3606,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4243,7 +4260,7 @@ GameObject:
   - component: {fileID: 5251459850253985074}
   - component: {fileID: 3303443221320660428}
   m_Layer: 5
-  m_Name: Top Camera (1)
+  m_Name: Bottom Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4338,8 +4355,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 466.2, y: -359.4}
-  m_SizeDelta: {x: -1164.4427, y: -718.73553}
+  m_AnchoredPosition: {x: 459, y: -348.1}
+  m_SizeDelta: {x: -916.76654, y: -696.137}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6392519322319700952
 CanvasRenderer:

@@ -61,6 +61,7 @@ public class AudioManager : MonoBehaviour
         foreach(var s in sounds)
         {
             s.volume = volume;
+            s.source.volume = volume;
         }
     }
 }
