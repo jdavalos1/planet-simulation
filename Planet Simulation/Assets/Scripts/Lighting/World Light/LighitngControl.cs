@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LighitngControl : MonoBehaviour
 {
+    public Material skybox;
+    
     // Day Attributes
     [Min(0.0f)]
     public float startTime;
@@ -11,6 +13,7 @@ public class LighitngControl : MonoBehaviour
     public float hoursPerDay;
     [Min(0.0f)]
     public float speedofDay;
+    public Light sunlight;
 
     // Variables to declare time starts
     [Min(0)]
@@ -36,8 +39,11 @@ public class LighitngControl : MonoBehaviour
         var currentHour = CurrentHour();
         dayLocked = !(currentHour >= dayTimeStart && currentHour < nightTimeStart);
         nightLocked = !dayLocked;
-        manager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
+        manager = GameObject.Find("Audio Manager").GetComponent<AudioManager>(); // FindObjectOfType<AudioManager>();
         HandleDayMusic();
+        // If it's night time we need to make sure the intensity starts at 0 and later updated
+
+        UpdateSkybox();
     }
     // Update is called once per frame
     void Update()
@@ -46,8 +52,10 @@ public class LighitngControl : MonoBehaviour
         currentRotation %= 360.0f;
         transform.localRotation = Quaternion.Euler(currentRotation, 0f, 0f);
         HandleDayMusic();
-    }
+        //HandleSunIntensity();
 
+        UpdateSkybox();
+    }
     /**
      * Return the current time in relation to the world time
      */
@@ -58,10 +66,13 @@ public class LighitngControl : MonoBehaviour
         return (dayAngle / 360) * hoursPerDay;
     }
 
+    /**
+     * Handle the music during the night and day
+     */
     private void HandleDayMusic()
     {
         var currentHour = (int)CurrentHour();
-
+        // Check night of day time and lock the current song being played
         if(currentHour >= dayTimeStart && currentHour <= nightTimeStart)
         {
             if (!dayLocked)
@@ -82,5 +93,52 @@ public class LighitngControl : MonoBehaviour
                 nightLocked = !nightLocked;
             }
         }
+    }
+    private void HandleSunIntensity()
+    {
+        var currentHour = CurrentHour();
+        var midday = hoursPerDay / 2;
+
+        // If daytime is increasing increase intensity
+        // else decrease it
+        if (currentHour >= dayTimeStart && currentHour <= midday)
+        {
+            // Obtain the hourly increase
+            var hourIntInc = 1 / (midday - dayTimeStart);
+
+            // Change the intensity based on curent hour (inc)
+            sunlight.intensity = (currentHour - dayTimeStart) * hourIntInc;
+        }
+        else if (currentHour > midday && currentHour < nightTimeStart)
+        {
+            // Obtain hourly decrease
+            var hourIntDec = 1 / (nightTimeStart - midday);
+            // Change intensity based on current hour (dec)
+            sunlight.intensity = (nightTimeStart - currentHour) * hourIntDec;
+        }
+        else
+        {
+            sunlight.intensity = 0;
+        }
+    }
+
+    private void UpdateSkybox()
+    {
+        var currentHour = CurrentHour();
+        float lightDimTime = (hoursPerDay / 4) * 2.5f;
+        float skyboxBlendFactor = 0;
+
+        if (currentHour >= dayTimeStart && currentHour <= lightDimTime)
+        {
+            skyboxBlendFactor = 1 / (lightDimTime - dayTimeStart);
+            skyboxBlendFactor = skyboxBlendFactor * (currentHour - dayTimeStart);
+        }
+        if (currentHour <= nightTimeStart && currentHour >= lightDimTime)
+        {
+            skyboxBlendFactor = 1 / (nightTimeStart - lightDimTime);
+            skyboxBlendFactor = skyboxBlendFactor * (nightTimeStart - currentHour);
+        }
+
+        skybox.SetFloat("_Blend", skyboxBlendFactor);
     }
 }
