@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     private AudioManager Manager;
+
     void Awake()
     {
         Manager = FindObjectOfType<AudioManager>();
